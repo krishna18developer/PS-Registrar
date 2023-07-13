@@ -78,10 +78,14 @@ namespace PS_Registrar
         }
         public string Between(string STR, string FirstString, string LastString)
         {
-            string FinalString;
-            int Pos1 = STR.IndexOf(FirstString) + FirstString.Length;
-            int Pos2 = STR.IndexOf(LastString);
-            FinalString = STR.Substring(Pos1, Pos2 - Pos1);
+            string FinalString = "";
+            if(STR!="")
+            {
+                int Pos1 = STR.IndexOf(FirstString) + FirstString.Length;
+                int Pos2 = STR.IndexOf(LastString);
+                FinalString = STR.Substring(Pos1, Pos2 - Pos1);
+                
+            }
             return FinalString;
         }
         private void LoadCaseFiles(string caseName,string DOR,string ID)
