@@ -55,10 +55,13 @@ namespace PS_Registrar
                 for (int i = 0; i < dataManager.NumberOfCases; i++)
                 {
                     string fileName = dataManager.caseFiles.ElementAt(i);
+                    //MessageBox.Show(fileName);
                     string ID = fileName.Replace("PSC-", "");
+                    //MessageBox.Show("Pre - " +ID);
                     string caseName = "ABCD";
                     string DOR = "23-05-2036";
                     ID = ID.Substring(ID.Length - 10, 6);
+                    //MessageBox.Show("ID - " + ID);
                     //MessageBox.Show(ID);
 
                     string caseFiles = File.ReadAllText(fileName);
@@ -68,8 +71,9 @@ namespace PS_Registrar
                 }
             }
             catch (Exception e1)
-                {
-                MessageBox.Show("File Busy");
+            {
+                MessageBox.Show("File Busy - Dashboard");
+                MessageBox.Show(e1+"");
             }
         }
         public string Between(string STR, string FirstString, string LastString)

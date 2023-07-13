@@ -41,16 +41,14 @@ namespace PS_Registrar
             }
             NumberOfCases = caseFiles.Count;
         }
-        public bool SaveData(string uniqueCaseID, string caseName,string slNo,string FIRNo,string DOR,string complaintantDetails,string accusedDetails,string modeOfCrime,string propertyLost,string remarks)
+        public bool SaveData(string uniqueCaseID, string caseName,string slNo,string FIRNo,string DOR,string complaintantDetails,string accusedDetails,string modeOfCrime,string propertyLost,string remarks,string accusedPictureLoc)
         {
             bool isSaveSuccessful = true;
             string filePath = path + caseFilesPrefix + uniqueCaseID + ".bin";
-            /*
-            if(!File.Exists(filePath))
+            /*if(!File.Exists(filePath))
             {
                 File.Create(filePath);
-            }     
-            */
+            }     */
             try
             {
                 
@@ -70,6 +68,7 @@ namespace PS_Registrar
                 tw.WriteLine("modeOfCrime:" + modeOfCrime + ":modeOfCrime");
                 tw.WriteLine("propertyLost:" + propertyLost + ":propertyLost");
                 tw.WriteLine("remarks:" + remarks + ":remarks");
+                tw.WriteLine("accusedPictureLoc:" + accusedPictureLoc + ":accusedPictureLoc");
                 tw.Close();
                 MessageBox.Show("Case Saved!");
             }

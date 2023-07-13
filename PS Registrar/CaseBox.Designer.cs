@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CaseBox));
             this.caseNameLabel = new System.Windows.Forms.Label();
             this.caseDateReported = new System.Windows.Forms.Label();
             this.openCaseButton = new System.Windows.Forms.Button();
@@ -48,7 +49,7 @@
             // caseDateReported
             // 
             this.caseDateReported.AutoSize = true;
-            this.caseDateReported.Location = new System.Drawing.Point(12, 94);
+            this.caseDateReported.Location = new System.Drawing.Point(14, 89);
             this.caseDateReported.Name = "caseDateReported";
             this.caseDateReported.Size = new System.Drawing.Size(104, 13);
             this.caseDateReported.TabIndex = 1;
@@ -92,6 +93,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.WindowFrame;
             this.ClientSize = new System.Drawing.Size(430, 166);
             this.Controls.Add(this.uniqueIDLabel);
             this.Controls.Add(this.deleteCaseButton);
@@ -99,6 +101,7 @@
             this.Controls.Add(this.caseDateReported);
             this.Controls.Add(this.caseNameLabel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "CaseBox";
             this.Text = "CaseBox";
             this.ResumeLayout(false);

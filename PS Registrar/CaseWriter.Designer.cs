@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CaseWriter));
             this.caseNameLabel = new System.Windows.Forms.Label();
             this.caseNameBox = new System.Windows.Forms.TextBox();
             this.backButton = new System.Windows.Forms.Button();
@@ -48,10 +49,12 @@
             this.propertyLostBox = new System.Windows.Forms.TextBox();
             this.remarksBox = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.saveCaseButton = new System.Windows.Forms.Button();
             this.caseIDLabel = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.accusedPictureBox = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.accusedPictureBox)).BeginInit();
             this.SuspendLayout();
             // 
             // caseNameLabel
@@ -148,7 +151,7 @@
             // 
             this.DORBox.Location = new System.Drawing.Point(176, 160);
             this.DORBox.Name = "DORBox";
-            this.DORBox.Size = new System.Drawing.Size(560, 20);
+            this.DORBox.Size = new System.Drawing.Size(354, 20);
             this.DORBox.TabIndex = 10;
             // 
             // label5
@@ -233,15 +236,6 @@
             this.label9.TabIndex = 26;
             this.label9.Text = "Accused Picture:";
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.pictureBox1.Location = new System.Drawing.Point(765, 261);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(214, 217);
-            this.pictureBox1.TabIndex = 27;
-            this.pictureBox1.TabStop = false;
-            // 
             // saveCaseButton
             // 
             this.saveCaseButton.Location = new System.Drawing.Point(176, 10);
@@ -261,14 +255,40 @@
             this.caseIDLabel.TabIndex = 29;
             this.caseIDLabel.Text = "Case ID: ";
             // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
+            this.openFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.openFileDialog1_FileOk);
+            // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.Location = new System.Drawing.Point(537, 160);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(200, 20);
+            this.dateTimePicker1.TabIndex = 30;
+            this.dateTimePicker1.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
+            // 
+            // accusedPictureBox
+            // 
+            this.accusedPictureBox.BackColor = System.Drawing.SystemColors.Control;
+            this.accusedPictureBox.Image = global::PS_Registrar.Properties.Resources.click;
+            this.accusedPictureBox.Location = new System.Drawing.Point(765, 261);
+            this.accusedPictureBox.Name = "accusedPictureBox";
+            this.accusedPictureBox.Size = new System.Drawing.Size(237, 243);
+            this.accusedPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.accusedPictureBox.TabIndex = 27;
+            this.accusedPictureBox.TabStop = false;
+            this.accusedPictureBox.DoubleClick += new System.EventHandler(this.accusedPictureBox_DoubleClick);
+            // 
             // CaseWriter
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1337, 815);
+            this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.caseIDLabel);
             this.Controls.Add(this.saveCaseButton);
-            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.accusedPictureBox);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.remarksBox);
             this.Controls.Add(this.propertyLostBox);
@@ -289,10 +309,11 @@
             this.Controls.Add(this.backButton);
             this.Controls.Add(this.caseNameLabel);
             this.Controls.Add(this.caseNameBox);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "CaseWriter";
             this.Text = "CaseWriter";
             this.Load += new System.EventHandler(this.CaseWriter_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.accusedPictureBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -320,8 +341,10 @@
         private System.Windows.Forms.TextBox propertyLostBox;
         private System.Windows.Forms.TextBox remarksBox;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox accusedPictureBox;
         private System.Windows.Forms.Button saveCaseButton;
         private System.Windows.Forms.Label caseIDLabel;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.DateTimePicker dateTimePicker1;
     }
 }

@@ -18,6 +18,7 @@ namespace PS_Registrar
         bool isCaseSaved = false;
         public string uniqueCaseID = "";
         public bool isNewCase = true;
+        string caseName = "", slNo = "", FIRNo = "", DOR = "", complaintantDetails = "", accusedDetails = "", modeOfCrime = "", propertyLost = "", remarks = "", accusedPictureLoc = "";
         public CaseWriter()
         {
             InitializeComponent();
@@ -44,8 +45,8 @@ namespace PS_Registrar
         private void saveCaseButton_Click(object sender, EventArgs e)
         {
             if(dataManager!=null)
-            {
-                isCaseSaved = dataManager.SaveData(uniqueCaseID, caseNameBox.Text, slNoBox.Text,FIRBox.Text, DORBox.Text, CPDetailsBox.Text, accusedDetailsBox.Text, modeOfCrimeBox.Text,propertyLostBox.Text,remarksBox.Text);
+            {              
+                isCaseSaved = dataManager.SaveData(uniqueCaseID, caseNameBox.Text, slNoBox.Text,FIRBox.Text, DORBox.Text, CPDetailsBox.Text, accusedDetailsBox.Text, modeOfCrimeBox.Text,propertyLostBox.Text,remarksBox.Text, dataManager.path + "Pictures\\" + uniqueCaseID + " " + openFileDialog1.SafeFileName);
             }
             else
             {
@@ -71,9 +72,15 @@ namespace PS_Registrar
         {
             if(isNewCase)
             {
-                FileNameGen();    
+                FileNameGen();
+                DORBox.Text = dateTimePicker1.Text;
+            }
+            else
+            {
+                DORBox.Text = DOR;
             }
             caseIDLabel.Text = "Case ID: " + uniqueCaseID;
+            
         }
 
         private void CPDetailsBox_TextChanged(object sender, EventArgs e)
@@ -82,7 +89,7 @@ namespace PS_Registrar
         }
         public void LoadData(string ID)
         {
-            string caseName = "", slNo = "", FIRNo = "", DOR = "", complaintantDetails = "", accusedDetails = "", modeOfCrime = "", propertyLost = "", remarks = "";
+            //string caseName = "", slNo = "", FIRNo = "", DOR = "", complaintantDetails = "", accusedDetails = "", modeOfCrime = "", propertyLost = "", remarks = "",accusedPictureLoc = "";
             dataManager.CheckDataUpdate();
             try
             {
@@ -102,6 +109,7 @@ namespace PS_Registrar
                 modeOfCrime = Between(caseFiles.ToString(), "modeOfCrime:", ":modeOfCrime");
                 propertyLost = Between(caseFiles.ToString(), "propertyLost:", ":propertyLost");
                 remarks = Between(caseFiles.ToString(), "remarks:", ":remarks");
+                accusedPictureLoc = Between(caseFiles.ToString(), "accusedPictureLoc:", ":accusedPictureLoc");
             }
             catch (Exception e1)
             {
@@ -116,6 +124,12 @@ namespace PS_Registrar
             modeOfCrimeBox.Text = modeOfCrime;
             propertyLostBox.Text = propertyLost;
             remarksBox.Text = remarks;
+            DORBox.Text = dateTimePicker1.Text;
+            if (File.Exists(accusedPictureLoc))
+            {
+                accusedPictureBox.Image = new Bitmap(accusedPictureLoc);
+            }
+            
             isCaseSaved = true;
         }
         public string Between(string STR, string FirstString, string LastString)
@@ -125,6 +139,44 @@ namespace PS_Registrar
             int Pos2 = STR.IndexOf(LastString);
             FinalString = STR.Substring(Pos1, Pos2 - Pos1);
             return FinalString;
+        }
+
+        private void openFileDialog1_FileOk(object sender, CancelEventArgs e)
+        {
+
+        }
+
+        private void accusedPictureBox_DoubleClick(object sender, EventArgs e)
+        {
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                if(!Directory.Exists(dataManager.path + "Pictures\\"))
+                {
+                    Directory.CreateDirectory(dataManager.path + "Pictures\\");
+                }
+                try
+                {
+                    string DestFilePath = dataManager.path + "Pictures\\" + uniqueCaseID + " " + openFileDialog1.SafeFileName;
+                    if (!File.Exists(DestFilePath))
+                    {
+                        File.Copy(openFileDialog1.FileName, DestFilePath);
+
+                        //Bitmap picture = new Bitmap(openFileDialog1.FileName);
+                        Bitmap picture = new Bitmap(DestFilePath);
+                        accusedPictureBox.Image = picture;
+                    }
+                }
+                catch (Exception ex)
+                {
+
+                }
+
+            }
+        }
+
+        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+            DORBox.Text = dateTimePicker1.Text;
         }
     }
 }

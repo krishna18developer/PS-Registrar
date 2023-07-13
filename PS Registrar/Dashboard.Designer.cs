@@ -28,12 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Dashboard));
             this.backButton = new System.Windows.Forms.Button();
             this.caseFilesPanel = new System.Windows.Forms.FlowLayoutPanel();
-            this.testButton = new System.Windows.Forms.Button();
             this.newCaseButton = new System.Windows.Forms.Button();
             this.openDataFolderButton = new System.Windows.Forms.Button();
             this.reloadCasesButton = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // backButton
@@ -49,25 +51,16 @@
             // caseFilesPanel
             // 
             this.caseFilesPanel.AutoScroll = true;
+            this.caseFilesPanel.BackColor = System.Drawing.Color.Transparent;
             this.caseFilesPanel.Location = new System.Drawing.Point(12, 51);
             this.caseFilesPanel.Name = "caseFilesPanel";
-            this.caseFilesPanel.Size = new System.Drawing.Size(897, 591);
+            this.caseFilesPanel.Size = new System.Drawing.Size(984, 547);
             this.caseFilesPanel.TabIndex = 2;
             this.caseFilesPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.caseFilesPanel_Paint);
             // 
-            // testButton
-            // 
-            this.testButton.Location = new System.Drawing.Point(151, 9);
-            this.testButton.Name = "testButton";
-            this.testButton.Size = new System.Drawing.Size(123, 23);
-            this.testButton.TabIndex = 3;
-            this.testButton.Text = "Test Button";
-            this.testButton.UseVisualStyleBackColor = true;
-            this.testButton.Click += new System.EventHandler(this.testButton_Click);
-            // 
             // newCaseButton
             // 
-            this.newCaseButton.Location = new System.Drawing.Point(289, 9);
+            this.newCaseButton.Location = new System.Drawing.Point(141, 9);
             this.newCaseButton.Name = "newCaseButton";
             this.newCaseButton.Size = new System.Drawing.Size(123, 23);
             this.newCaseButton.TabIndex = 4;
@@ -87,7 +80,7 @@
             // 
             // reloadCasesButton
             // 
-            this.reloadCasesButton.Location = new System.Drawing.Point(418, 9);
+            this.reloadCasesButton.Location = new System.Drawing.Point(270, 9);
             this.reloadCasesButton.Name = "reloadCasesButton";
             this.reloadCasesButton.Size = new System.Drawing.Size(123, 23);
             this.reloadCasesButton.TabIndex = 6;
@@ -95,20 +88,34 @@
             this.reloadCasesButton.UseVisualStyleBackColor = true;
             this.reloadCasesButton.Click += new System.EventHandler(this.reloadCasesButton_Click);
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::PS_Registrar.Properties.Resources.Telangana_Police_Logo;
+            this.pictureBox1.Location = new System.Drawing.Point(848, 604);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(148, 157);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 7;
+            this.pictureBox1.TabStop = false;
+            // 
             // Dashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(924, 702);
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.ClientSize = new System.Drawing.Size(1008, 757);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.reloadCasesButton);
             this.Controls.Add(this.openDataFolderButton);
             this.Controls.Add(this.newCaseButton);
-            this.Controls.Add(this.testButton);
             this.Controls.Add(this.caseFilesPanel);
             this.Controls.Add(this.backButton);
+            this.DoubleBuffered = true;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Dashboard";
             this.Text = "PS Registrar - Dashboard";
             this.Load += new System.EventHandler(this.Dashboard_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -116,10 +123,10 @@
         #endregion
         private System.Windows.Forms.Button backButton;
         private System.Windows.Forms.FlowLayoutPanel caseFilesPanel;
-        private System.Windows.Forms.Button testButton;
         private System.Windows.Forms.Button newCaseButton;
         private System.Windows.Forms.Button openDataFolderButton;
         private System.Windows.Forms.Button reloadCasesButton;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
 
