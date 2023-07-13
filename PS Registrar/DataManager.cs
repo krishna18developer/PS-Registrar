@@ -8,10 +8,12 @@ using System.Windows.Forms;
 
 namespace PS_Registrar
 {
-    class DataManager
+    public class DataManager
     {
-        string path = Directory.GetCurrentDirectory() + "\\Data\\";
-        List<string> caseFiles = new List<string>();
+        public string path = Directory.GetCurrentDirectory() + "\\Data\\";
+        public List<string> caseFiles = new List<string>();
+        string caseFilesPrefix = "PSC-";
+        public int NumberOfCases = 0;
         public DataManager() 
         {
             if(!Directory.Exists("Data"))
@@ -19,24 +21,52 @@ namespace PS_Registrar
                 Directory.CreateDirectory("Data");
             }
             
-            string searchPattern = "PSC-";
+            
             IEnumerable<string> AllfilePaths = Directory.EnumerateFiles(path);
             //Directory.EnumerateFiles(path);
             foreach (string filePath in AllfilePaths)
             {
                 //MessageBox.Show(filePath);
-                if(filePath.Contains(searchPattern))
+                if(filePath.Contains(caseFilesPrefix))
                 {
                     caseFiles.Add(filePath);
                    // MessageBox.Show(filePath);
                 }
             }
-            foreach(string filePath in caseFiles)
-            {
-                MessageBox.Show(filePath);
-            }
+            NumberOfCases = caseFiles.Count;
             
         }
-
+        public bool SaveData(string uniqueCaseID, string caseName,string slNo,string FIRNo,string DOR,string complaintantDetails,string accusedDetails,string modeOfCrime,string propertyLost,string remarks)
+        {
+            bool isSaveSuccessful = true;
+            string filePath = path + caseFilesPrefix + uniqueCaseID + ".bin";
+            string filePathWithoutExt = path + caseFilesPrefix + uniqueCaseID;         
+            if(!File.Exists(filePath))
+            {
+                File.Create(filePath);
+            }          
+            try
+            {
+                File.Copy(filePath, filePathWithoutExt + "-B"+".bin");
+                File.WriteAllText(filePath, String.Empty);
+                File.AppendAllText(filePath, "caseName:" + caseName);
+                /*
+                File.AppendAllText(filePath, "slNo:" + slNo);
+                File.AppendAllText(filePath, "FIRNo:" + FIRNo);
+                File.AppendAllText(filePath, "DOR:" + caseName);
+                File.AppendAllText(filePath, "complaintantDetails:" + complaintantDetails);
+                File.AppendAllText(filePath, "accusedDetails:" + accusedDetails);
+                File.AppendAllText(filePath, "modeOfCrime:" + modeOfCrime);
+                File.AppendAllText(filePath, "propertyLost:" + propertyLost);
+                File.AppendAllText(filePath, "remarks:" + remarks);
+                */
+                MessageBox.Show("Case Saved!");
+            }
+            catch(Exception e)
+            {
+                MessageBox.Show("Exception e : " + e);
+            }
+            return isSaveSuccessful;
+        }
     }
 }

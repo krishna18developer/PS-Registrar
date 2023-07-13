@@ -29,8 +29,10 @@
         private void InitializeComponent()
         {
             this.backButton = new System.Windows.Forms.Button();
-            this.caseListView = new System.Windows.Forms.ListView();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.caseFilesPanel = new System.Windows.Forms.FlowLayoutPanel();
+            this.testButton = new System.Windows.Forms.Button();
+            this.newCaseButton = new System.Windows.Forms.Button();
+            this.openDataFolderButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // backButton
@@ -43,29 +45,53 @@
             this.backButton.UseVisualStyleBackColor = true;
             this.backButton.Click += new System.EventHandler(this.backButton_Click);
             // 
-            // caseListView
+            // caseFilesPanel
             // 
-            this.caseListView.HideSelection = false;
-            this.caseListView.Location = new System.Drawing.Point(12, 47);
-            this.caseListView.Name = "caseListView";
-            this.caseListView.Size = new System.Drawing.Size(973, 595);
-            this.caseListView.TabIndex = 0;
-            this.caseListView.UseCompatibleStateImageBehavior = false;
+            this.caseFilesPanel.AutoScroll = true;
+            this.caseFilesPanel.Location = new System.Drawing.Point(12, 51);
+            this.caseFilesPanel.Name = "caseFilesPanel";
+            this.caseFilesPanel.Size = new System.Drawing.Size(897, 591);
+            this.caseFilesPanel.TabIndex = 2;
             // 
-            // panel1
+            // testButton
             // 
-            this.panel1.Location = new System.Drawing.Point(991, 47);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(389, 156);
-            this.panel1.TabIndex = 2;
+            this.testButton.Location = new System.Drawing.Point(151, 9);
+            this.testButton.Name = "testButton";
+            this.testButton.Size = new System.Drawing.Size(123, 23);
+            this.testButton.TabIndex = 3;
+            this.testButton.Text = "Test Button";
+            this.testButton.UseVisualStyleBackColor = true;
+            this.testButton.Click += new System.EventHandler(this.testButton_Click);
+            // 
+            // newCaseButton
+            // 
+            this.newCaseButton.Location = new System.Drawing.Point(289, 9);
+            this.newCaseButton.Name = "newCaseButton";
+            this.newCaseButton.Size = new System.Drawing.Size(123, 23);
+            this.newCaseButton.TabIndex = 4;
+            this.newCaseButton.Text = "New Case";
+            this.newCaseButton.UseVisualStyleBackColor = true;
+            this.newCaseButton.Click += new System.EventHandler(this.newCaseButton_Click);
+            // 
+            // openDataFolderButton
+            // 
+            this.openDataFolderButton.Location = new System.Drawing.Point(786, 12);
+            this.openDataFolderButton.Name = "openDataFolderButton";
+            this.openDataFolderButton.Size = new System.Drawing.Size(123, 23);
+            this.openDataFolderButton.TabIndex = 5;
+            this.openDataFolderButton.Text = "Open Data Folder";
+            this.openDataFolderButton.UseVisualStyleBackColor = true;
+            this.openDataFolderButton.Click += new System.EventHandler(this.openDataFolderButton_Click);
             // 
             // Dashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1405, 702);
-            this.Controls.Add(this.panel1);
-            this.Controls.Add(this.caseListView);
+            this.ClientSize = new System.Drawing.Size(924, 702);
+            this.Controls.Add(this.openDataFolderButton);
+            this.Controls.Add(this.newCaseButton);
+            this.Controls.Add(this.testButton);
+            this.Controls.Add(this.caseFilesPanel);
             this.Controls.Add(this.backButton);
             this.Name = "Dashboard";
             this.Text = "PS Registrar - Dashboard";
@@ -76,8 +102,10 @@
 
         #endregion
         private System.Windows.Forms.Button backButton;
-        private System.Windows.Forms.ListView caseListView;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.FlowLayoutPanel caseFilesPanel;
+        private System.Windows.Forms.Button testButton;
+        private System.Windows.Forms.Button newCaseButton;
+        private System.Windows.Forms.Button openDataFolderButton;
     }
 }
 

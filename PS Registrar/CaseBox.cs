@@ -16,5 +16,20 @@ namespace PS_Registrar
         {
             InitializeComponent();
         }
+
+        private void deleteCaseButton_Click(object sender, EventArgs e)
+        {
+            DialogResult dialogResult = MessageBox.Show("Are you sure you want to delete the case ?", "Delete Case - PS Registrar", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                //Delete Logic
+            }
+        }
+        public void SetDetails(string caseName,string DOR,string uniqueID)
+        {
+            caseNameLabel.Text = caseName;
+            caseDateReported.Text = DOR;
+            uniqueIDLabel.Text = uniqueID;
+        }
     }
 }

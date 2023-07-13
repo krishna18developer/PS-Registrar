@@ -16,7 +16,7 @@ namespace PS_Registrar
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new CaseWriter());
+            Application.Run(new Dashboard());
         }
     }
 }

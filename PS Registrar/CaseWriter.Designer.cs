@@ -32,23 +32,25 @@
             this.caseNameBox = new System.Windows.Forms.TextBox();
             this.backButton = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.slNoBox = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.FIRBox = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.CPDetailsBox = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.DORBox = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.textBox6 = new System.Windows.Forms.TextBox();
-            this.textBox7 = new System.Windows.Forms.TextBox();
-            this.textBox8 = new System.Windows.Forms.TextBox();
+            this.accusedDetailsBox = new System.Windows.Forms.TextBox();
+            this.modeOfCrimeBox = new System.Windows.Forms.TextBox();
+            this.propertyLostBox = new System.Windows.Forms.TextBox();
+            this.remarksBox = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.saveCaseButton = new System.Windows.Forms.Button();
+            this.caseIDLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -77,6 +79,7 @@
             this.backButton.TabIndex = 5;
             this.backButton.Text = "Back To Dashboard";
             this.backButton.UseVisualStyleBackColor = true;
+            this.backButton.Click += new System.EventHandler(this.backButton_Click);
             // 
             // label1
             // 
@@ -88,12 +91,12 @@
             this.label1.TabIndex = 7;
             this.label1.Text = "SL No:";
             // 
-            // textBox1
+            // slNoBox
             // 
-            this.textBox1.Location = new System.Drawing.Point(177, 78);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(559, 20);
-            this.textBox1.TabIndex = 6;
+            this.slNoBox.Location = new System.Drawing.Point(177, 78);
+            this.slNoBox.Name = "slNoBox";
+            this.slNoBox.Size = new System.Drawing.Size(559, 20);
+            this.slNoBox.TabIndex = 6;
             // 
             // label2
             // 
@@ -105,12 +108,12 @@
             this.label2.TabIndex = 9;
             this.label2.Text = "FIR No:";
             // 
-            // textBox2
+            // FIRBox
             // 
-            this.textBox2.Location = new System.Drawing.Point(177, 117);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(559, 20);
-            this.textBox2.TabIndex = 8;
+            this.FIRBox.Location = new System.Drawing.Point(177, 117);
+            this.FIRBox.Name = "FIRBox";
+            this.FIRBox.Size = new System.Drawing.Size(559, 20);
+            this.FIRBox.TabIndex = 8;
             // 
             // label3
             // 
@@ -122,13 +125,13 @@
             this.label3.TabIndex = 13;
             this.label3.Text = "Complaintant Details:";
             // 
-            // textBox3
+            // CPDetailsBox
             // 
-            this.textBox3.Location = new System.Drawing.Point(176, 196);
-            this.textBox3.Multiline = true;
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(560, 140);
-            this.textBox3.TabIndex = 12;
+            this.CPDetailsBox.Location = new System.Drawing.Point(176, 196);
+            this.CPDetailsBox.Multiline = true;
+            this.CPDetailsBox.Name = "CPDetailsBox";
+            this.CPDetailsBox.Size = new System.Drawing.Size(560, 140);
+            this.CPDetailsBox.TabIndex = 12;
             // 
             // label4
             // 
@@ -140,12 +143,12 @@
             this.label4.TabIndex = 11;
             this.label4.Text = "Date Of Report:";
             // 
-            // textBox4
+            // DORBox
             // 
-            this.textBox4.Location = new System.Drawing.Point(176, 160);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(560, 20);
-            this.textBox4.TabIndex = 10;
+            this.DORBox.Location = new System.Drawing.Point(176, 160);
+            this.DORBox.Name = "DORBox";
+            this.DORBox.Size = new System.Drawing.Size(560, 20);
+            this.DORBox.TabIndex = 10;
             // 
             // label5
             // 
@@ -180,90 +183,114 @@
             // label8
             // 
             this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.Location = new System.Drawing.Point(761, 40);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(52, 13);
+            this.label8.Size = new System.Drawing.Size(77, 20);
             this.label8.TabIndex = 21;
             this.label8.Text = "Remarks:";
             // 
-            // textBox5
+            // accusedDetailsBox
             // 
-            this.textBox5.Location = new System.Drawing.Point(176, 351);
-            this.textBox5.Multiline = true;
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(560, 140);
-            this.textBox5.TabIndex = 22;
+            this.accusedDetailsBox.Location = new System.Drawing.Point(176, 351);
+            this.accusedDetailsBox.Multiline = true;
+            this.accusedDetailsBox.Name = "accusedDetailsBox";
+            this.accusedDetailsBox.Size = new System.Drawing.Size(560, 140);
+            this.accusedDetailsBox.TabIndex = 22;
             // 
-            // textBox6
+            // modeOfCrimeBox
             // 
-            this.textBox6.Location = new System.Drawing.Point(177, 509);
-            this.textBox6.Multiline = true;
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(560, 140);
-            this.textBox6.TabIndex = 23;
+            this.modeOfCrimeBox.Location = new System.Drawing.Point(177, 509);
+            this.modeOfCrimeBox.Multiline = true;
+            this.modeOfCrimeBox.Name = "modeOfCrimeBox";
+            this.modeOfCrimeBox.Size = new System.Drawing.Size(560, 140);
+            this.modeOfCrimeBox.TabIndex = 23;
             // 
-            // textBox7
+            // propertyLostBox
             // 
-            this.textBox7.Location = new System.Drawing.Point(177, 655);
-            this.textBox7.Multiline = true;
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(560, 140);
-            this.textBox7.TabIndex = 24;
+            this.propertyLostBox.Location = new System.Drawing.Point(177, 655);
+            this.propertyLostBox.Multiline = true;
+            this.propertyLostBox.Name = "propertyLostBox";
+            this.propertyLostBox.Size = new System.Drawing.Size(560, 140);
+            this.propertyLostBox.TabIndex = 24;
             // 
-            // textBox8
+            // remarksBox
             // 
-            this.textBox8.Location = new System.Drawing.Point(764, 63);
-            this.textBox8.Multiline = true;
-            this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new System.Drawing.Size(560, 140);
-            this.textBox8.TabIndex = 25;
+            this.remarksBox.Location = new System.Drawing.Point(764, 63);
+            this.remarksBox.Multiline = true;
+            this.remarksBox.Name = "remarksBox";
+            this.remarksBox.Size = new System.Drawing.Size(560, 140);
+            this.remarksBox.TabIndex = 25;
             // 
             // label9
             // 
             this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.Location = new System.Drawing.Point(761, 238);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(88, 13);
+            this.label9.Size = new System.Drawing.Size(128, 20);
             this.label9.TabIndex = 26;
             this.label9.Text = "Accused Picture:";
             // 
             // pictureBox1
             // 
             this.pictureBox1.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.pictureBox1.Location = new System.Drawing.Point(764, 254);
+            this.pictureBox1.Location = new System.Drawing.Point(765, 261);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(214, 217);
             this.pictureBox1.TabIndex = 27;
             this.pictureBox1.TabStop = false;
+            // 
+            // saveCaseButton
+            // 
+            this.saveCaseButton.Location = new System.Drawing.Point(176, 10);
+            this.saveCaseButton.Name = "saveCaseButton";
+            this.saveCaseButton.Size = new System.Drawing.Size(137, 23);
+            this.saveCaseButton.TabIndex = 28;
+            this.saveCaseButton.Text = "Save Case";
+            this.saveCaseButton.UseVisualStyleBackColor = true;
+            this.saveCaseButton.Click += new System.EventHandler(this.saveCaseButton_Click);
+            // 
+            // caseIDLabel
+            // 
+            this.caseIDLabel.AutoSize = true;
+            this.caseIDLabel.Location = new System.Drawing.Point(333, 15);
+            this.caseIDLabel.Name = "caseIDLabel";
+            this.caseIDLabel.Size = new System.Drawing.Size(51, 13);
+            this.caseIDLabel.TabIndex = 29;
+            this.caseIDLabel.Text = "Case ID: ";
             // 
             // CaseWriter
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1337, 815);
+            this.Controls.Add(this.caseIDLabel);
+            this.Controls.Add(this.saveCaseButton);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.label9);
-            this.Controls.Add(this.textBox8);
-            this.Controls.Add(this.textBox7);
-            this.Controls.Add(this.textBox6);
-            this.Controls.Add(this.textBox5);
+            this.Controls.Add(this.remarksBox);
+            this.Controls.Add(this.propertyLostBox);
+            this.Controls.Add(this.modeOfCrimeBox);
+            this.Controls.Add(this.accusedDetailsBox);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.textBox3);
+            this.Controls.Add(this.CPDetailsBox);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.textBox4);
+            this.Controls.Add(this.DORBox);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.FIRBox);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.slNoBox);
             this.Controls.Add(this.backButton);
             this.Controls.Add(this.caseNameLabel);
             this.Controls.Add(this.caseNameBox);
             this.Name = "CaseWriter";
             this.Text = "CaseWriter";
+            this.Load += new System.EventHandler(this.CaseWriter_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -276,22 +303,24 @@
         private System.Windows.Forms.TextBox caseNameBox;
         private System.Windows.Forms.Button backButton;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox slNoBox;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox FIRBox;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox CPDetailsBox;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox DORBox;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.TextBox textBox6;
-        private System.Windows.Forms.TextBox textBox7;
-        private System.Windows.Forms.TextBox textBox8;
+        private System.Windows.Forms.TextBox accusedDetailsBox;
+        private System.Windows.Forms.TextBox modeOfCrimeBox;
+        private System.Windows.Forms.TextBox propertyLostBox;
+        private System.Windows.Forms.TextBox remarksBox;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Button saveCaseButton;
+        private System.Windows.Forms.Label caseIDLabel;
     }
 }
