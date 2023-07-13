@@ -50,52 +50,35 @@ namespace PS_Registrar
         {
             caseFilesPanel.Controls.Clear();
             dataManager.CheckDataUpdate();
-            for (int i = 0; i < dataManager.NumberOfCases; i++)
+            try
             {
-                string fileName = dataManager.caseFiles.ElementAt(i);
-                string ID = fileName.Replace("PSC-", "");
-                string caseName = "ABCD";
-                string DOR = "23-05-2036";
-                ID = ID.Substring(ID.Length - 10, 6);
-                //MessageBox.Show(ID);
-                try
+                for (int i = 0; i < dataManager.NumberOfCases; i++)
                 {
-                    IEnumerable<string> caseFiles = File.ReadLines(fileName);
-                    foreach (string line in caseFiles)
-                    {
-                        /*
-                        if (line.StartsWith("caseName:"))
-                        {
-                            caseName = line.Replace("caseName:", "");
-                        }
-                        */
-                        if (line.StartsWith("complaintantDetails:"))
-                        {
-                            caseName = line.Replace("complaintantDetails:", "");
+                    string fileName = dataManager.caseFiles.ElementAt(i);
+                    string ID = fileName.Replace("PSC-", "");
+                    string caseName = "ABCD";
+                    string DOR = "23-05-2036";
+                    ID = ID.Substring(ID.Length - 10, 6);
+                    //MessageBox.Show(ID);
 
-                            caseName = line.Replace(":complaintantDetails", ""); // && line.EndsWith(":complaintantDetails")
-                        }
-                        else if (line.StartsWith("DOR:"))
-                        {
-                            DOR = line.Replace("DOR:", "");
-                        }
-                    }
-                    for(int ik = 0;ik<caseFiles.Count();ik++)
-                    {
-                        if (caseFiles.ElementAt(ik).StartsWith("complaintantDetails:"))
-                        {
-                            caseName = caseFiles.ElementAt(ik).Replace("complaintantDetails:", "");
-
-                            caseName = caseFiles.ElementAt(ik).Replace(":complaintantDetails", ""); // && line.EndsWith(":complaintantDetails")
-                        }
-                    }
+                    string caseFiles = File.ReadAllText(fileName);
+                    caseName = Between(caseFiles.ToString(), "caseName:", ":caseName");
+                    DOR = Between(caseFiles.ToString(), "DOR:", ":DOR");
                     LoadCaseFiles(caseName, DOR, ID);
                 }
-                catch (Exception e1)
-                {
-                    MessageBox.Show("File Busy");
-                }
             }
+            catch (Exception e1)
+                {
+                MessageBox.Show("File Busy");
+            }
+        }
+        public string Between(string STR, string FirstString, string LastString)
+        {
+            string FinalString;
+            int Pos1 = STR.IndexOf(FirstString) + FirstString.Length;
+            int Pos2 = STR.IndexOf(LastString);
+            FinalString = STR.Substring(Pos1, Pos2 - Pos1);
+            return FinalString;
         }
         private void LoadCaseFiles(string caseName,string DOR,string ID)
         {
@@ -114,6 +97,7 @@ namespace PS_Registrar
             CaseBox caseBox = new CaseBox();
             caseBox.TopLevel = false;
             caseBox.AutoScroll = true;
+            caseBox.dashboard = this;
             caseFilesPanel.Controls.Add(caseBox);
             caseBox.Show();
         }
@@ -123,6 +107,16 @@ namespace PS_Registrar
             CaseWriter caseWriter = new CaseWriter();
             caseWriter.dashboard = this;
             caseWriter.dataManager = dataManager;
+            caseWriter.Show();
+            this.Hide();
+        }
+        public void openExistingCase(string ID)
+        {
+            CaseWriter caseWriter = new CaseWriter();
+            caseWriter.dashboard = this;
+            caseWriter.dataManager = dataManager;
+            caseWriter.isNewCase = false;
+            caseWriter.LoadData(ID);
             caseWriter.Show();
             this.Hide();
         }

@@ -45,7 +45,6 @@ namespace PS_Registrar
         {
             bool isSaveSuccessful = true;
             string filePath = path + caseFilesPrefix + uniqueCaseID + ".bin";
-            string filePathWithoutExt = path + caseFilesPrefix + uniqueCaseID;         
             /*
             if(!File.Exists(filePath))
             {
@@ -54,19 +53,23 @@ namespace PS_Registrar
             */
             try
             {
-                TextWriter tw = new StreamWriter(filePath,true);
+                
+                FileStream fs = new FileStream(filePath, FileMode.Truncate);
+                fs.Close();
+                TextWriter tw = new StreamWriter(filePath, true);
                 //File.Copy(filePath, filePathWithoutExt + "-B"+".bin");
                 // File.WriteAllText(filePath, String.Empty);
                 // File.AppendAllText(filePath, "caseName:" + caseName);
-                tw.WriteLine("caseName:" + caseName);
-                tw.WriteLine("slNo:" + slNo);
-                tw.WriteLine("FIRNo:" + FIRNo);
-                tw.WriteLine("DOR:" + caseName);
-                tw.WriteLine("complaintantDetails:" + complaintantDetails);
-                tw.WriteLine("accusedDetails:" + accusedDetails);
-                tw.WriteLine("modeOfCrime:" + modeOfCrime);
-                tw.WriteLine("propertyLost:" + propertyLost);
-                tw.WriteLine("remarks:" + remarks);
+                tw.WriteLine(String.Empty);
+                tw.WriteLine("caseName:" + caseName + ":caseName");
+                tw.WriteLine("slNo:" + slNo + ":slNo");
+                tw.WriteLine("FIRNo:" + FIRNo + ":FIRNo");
+                tw.WriteLine("DOR:" + DOR + ":DOR");
+                tw.WriteLine("complaintantDetails:" + complaintantDetails + ":complaintantDetails");
+                tw.WriteLine("accusedDetails:" + accusedDetails + ":accusedDetails");
+                tw.WriteLine("modeOfCrime:" + modeOfCrime + ":modeOfCrime");
+                tw.WriteLine("propertyLost:" + propertyLost + ":propertyLost");
+                tw.WriteLine("remarks:" + remarks + ":remarks");
                 tw.Close();
                 MessageBox.Show("Case Saved!");
             }
@@ -76,7 +79,25 @@ namespace PS_Registrar
             }
             return isSaveSuccessful;
         }
+        public void LoadData()
+        {
+            
+        }
+        public string getCaseFileWithID(string ID)
+        {
+            string n = "";
 
+            foreach(string caseFile in caseFiles)
+            {
+                if (caseFile.Contains("PSC-" + ID))
+                {
+                    n = caseFile;
+                    break;
+                }
+            }
+            //MessageBox.Show("Data Manager - " + n);
+            return n;
+        }
         public void DeleteCase(string ID)
         {
             ID = "PSC-" + ID + ".bin";

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -73,6 +74,57 @@ namespace PS_Registrar
                 FileNameGen();    
             }
             caseIDLabel.Text = "Case ID: " + uniqueCaseID;
+        }
+
+        private void CPDetailsBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+        public void LoadData(string ID)
+        {
+            string caseName = "", slNo = "", FIRNo = "", DOR = "", complaintantDetails = "", accusedDetails = "", modeOfCrime = "", propertyLost = "", remarks = "";
+            dataManager.CheckDataUpdate();
+            try
+            {
+                
+               // string fileName = dataManager.caseFiles.ElementAt(dataManager.getFileID(ID));
+                //MessageBox.Show("File name: " + fileName);
+                //  string caseFiles = File.ReadAllText(fileName);
+                string caseFiles = File.ReadAllText(dataManager.getCaseFileWithID(ID));
+                caseIDLabel.Text = "Case ID: " + uniqueCaseID;
+                uniqueCaseID = ID;
+                caseName = Between(caseFiles.ToString(), "caseName:", ":caseName");
+                slNo = Between(caseFiles.ToString(), "slNo:", ":slNo");
+                FIRNo = Between(caseFiles.ToString(), "FIRNo:", ":FIRNo");
+                DOR = Between(caseFiles.ToString(), "DOR:", ":DOR");
+                complaintantDetails = Between(caseFiles.ToString(), "complaintantDetails:", ":complaintantDetails");
+                accusedDetails = Between(caseFiles.ToString(), "accusedDetails:", ":accusedDetails");
+                modeOfCrime = Between(caseFiles.ToString(), "modeOfCrime:", ":modeOfCrime");
+                propertyLost = Between(caseFiles.ToString(), "propertyLost:", ":propertyLost");
+                remarks = Between(caseFiles.ToString(), "remarks:", ":remarks");
+            }
+            catch (Exception e1)
+            {
+                MessageBox.Show("File Busy - Case Writer");
+            }
+            caseNameBox.Text = caseName;
+            slNoBox.Text = slNo;
+            FIRBox.Text = FIRNo;
+            DORBox.Text = DOR;
+            CPDetailsBox.Text = complaintantDetails;
+            accusedDetailsBox.Text = accusedDetails;
+            modeOfCrimeBox.Text = modeOfCrime;
+            propertyLostBox.Text = propertyLost;
+            remarksBox.Text = remarks;
+            isCaseSaved = true;
+        }
+        public string Between(string STR, string FirstString, string LastString)
+        {
+            string FinalString;
+            int Pos1 = STR.IndexOf(FirstString) + FirstString.Length;
+            int Pos2 = STR.IndexOf(LastString);
+            FinalString = STR.Substring(Pos1, Pos2 - Pos1);
+            return FinalString;
         }
     }
 }

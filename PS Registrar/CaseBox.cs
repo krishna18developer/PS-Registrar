@@ -33,5 +33,11 @@ namespace PS_Registrar
             caseDateReported.Text = DOR;
             uniqueIDLabel.Text = uniqueID;
         }
+
+        private void openCaseButton_Click(object sender, EventArgs e)
+        {
+            if(uniqueIDLabel.Text !="" && dashboard !=null)
+            dashboard.openExistingCase(uniqueIDLabel.Text);
+        }
     }
 }

@@ -132,6 +132,7 @@
             this.CPDetailsBox.Name = "CPDetailsBox";
             this.CPDetailsBox.Size = new System.Drawing.Size(560, 140);
             this.CPDetailsBox.TabIndex = 12;
+            this.CPDetailsBox.TextChanged += new System.EventHandler(this.CPDetailsBox_TextChanged);
             // 
             // label4
             // 
