@@ -45,19 +45,13 @@ namespace PS_Registrar
         {
             bool isSaveSuccessful = true;
             string filePath = path + caseFilesPrefix + uniqueCaseID + ".bin";
-            /*if(!File.Exists(filePath))
-            {
-                File.Create(filePath);
-            }     */
+            FileStream file = new FileStream(filePath, FileMode.Create);
+            file.Close();
             try
             {
-                
                 FileStream fs = new FileStream(filePath, FileMode.Truncate);
                 fs.Close();
                 TextWriter tw = new StreamWriter(filePath, true);
-                //File.Copy(filePath, filePathWithoutExt + "-B"+".bin");
-                // File.WriteAllText(filePath, String.Empty);
-                // File.AppendAllText(filePath, "caseName:" + caseName);
                 tw.WriteLine(String.Empty);
                 tw.WriteLine("caseName:" + caseName + ":caseName");
                 tw.WriteLine("slNo:" + slNo + ":slNo");
@@ -77,10 +71,6 @@ namespace PS_Registrar
                 MessageBox.Show("Exception e : " + e);
             }
             return isSaveSuccessful;
-        }
-        public void LoadData()
-        {
-            
         }
         public string getCaseFileWithID(string ID)
         {

@@ -63,17 +63,21 @@ namespace PS_Registrar
                     ID = ID.Substring(ID.Length - 10, 6);
                     //MessageBox.Show("ID - " + ID);
                     //MessageBox.Show(ID);
-
-                    string caseFiles = File.ReadAllText(fileName);
+                    //FileStream fs = new FileStream(fileName, FileMode.Open);
+                    //fs.Close();
+                    StreamReader stream = new StreamReader(fileName);
+                    string caseFiles = stream.ReadToEnd();
+                    // string caseFiles = File.ReadAllText(fileName);
                     caseName = Between(caseFiles.ToString(), "caseName:", ":caseName");
                     DOR = Between(caseFiles.ToString(), "DOR:", ":DOR");
                     LoadCaseFiles(caseName, DOR, ID);
+                    stream.Close();
                 }
             }
-            catch (Exception e1)
+            catch (Exception ek)
             {
-                MessageBox.Show("File Busy - Dashboard");
-                MessageBox.Show(e1+"");
+                MessageBox.Show("Dashboard - File Busy");
+                Console.WriteLine(ek);
             }
         }
         public string Between(string STR, string FirstString, string LastString)
