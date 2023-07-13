@@ -16,6 +16,7 @@ namespace PS_Registrar
     {
         public Login login = null;
         DataManager dataManager;
+
         public Dashboard()
         {
             InitializeComponent();
@@ -42,29 +43,60 @@ namespace PS_Registrar
         {
             //MessageBox.Show("" + Directory.GetCurrentDirectory());
             dataManager = new DataManager();
-            for(int i = 0; i<dataManager.NumberOfCases;i++)
+            dataManager.dashboard = this;
+            CaseLoader();
+        }
+        public void CaseLoader()
+        {
+            caseFilesPanel.Controls.Clear();
+            dataManager.CheckDataUpdate();
+            for (int i = 0; i < dataManager.NumberOfCases; i++)
             {
                 string fileName = dataManager.caseFiles.ElementAt(i);
-                string ID = fileName.Replace("PSC-","");
+                string ID = fileName.Replace("PSC-", "");
                 string caseName = "ABCD";
                 string DOR = "23-05-2036";
-                ID = ID.Substring(ID.Length-10,6);
+                ID = ID.Substring(ID.Length - 10, 6);
                 //MessageBox.Show(ID);
-                foreach(string line in File.ReadLines(fileName))
+                try
                 {
-                    if(line.StartsWith("caseName:"))
+                    IEnumerable<string> caseFiles = File.ReadLines(fileName);
+                    foreach (string line in caseFiles)
                     {
-                        caseName = line.Replace("caseName:","");
+                        /*
+                        if (line.StartsWith("caseName:"))
+                        {
+                            caseName = line.Replace("caseName:", "");
+                        }
+                        */
+                        if (line.StartsWith("complaintantDetails:"))
+                        {
+                            caseName = line.Replace("complaintantDetails:", "");
+
+                            caseName = line.Replace(":complaintantDetails", ""); // && line.EndsWith(":complaintantDetails")
+                        }
+                        else if (line.StartsWith("DOR:"))
+                        {
+                            DOR = line.Replace("DOR:", "");
+                        }
                     }
-                    else if(line.StartsWith("DOR:"))
+                    for(int ik = 0;ik<caseFiles.Count();ik++)
                     {
-                        DOR = line.Replace("DOR:", "");
+                        if (caseFiles.ElementAt(ik).StartsWith("complaintantDetails:"))
+                        {
+                            caseName = caseFiles.ElementAt(ik).Replace("complaintantDetails:", "");
+
+                            caseName = caseFiles.ElementAt(ik).Replace(":complaintantDetails", ""); // && line.EndsWith(":complaintantDetails")
+                        }
                     }
+                    LoadCaseFiles(caseName, DOR, ID);
                 }
-                LoadCaseFiles(caseName,DOR, ID);
+                catch (Exception e1)
+                {
+                    MessageBox.Show("File Busy");
+                }
             }
         }
-
         private void LoadCaseFiles(string caseName,string DOR,string ID)
         {
             CaseBox caseBox = new CaseBox();
@@ -72,6 +104,8 @@ namespace PS_Registrar
             caseBox.AutoScroll = true;
             caseBox.SetDetails(caseName,DOR,ID);
             caseFilesPanel.Controls.Add(caseBox);
+            caseBox.dataManager = dataManager;
+            caseBox.dashboard = this;
             caseBox.Show();
         }
 
@@ -96,6 +130,17 @@ namespace PS_Registrar
         private void openDataFolderButton_Click(object sender, EventArgs e)
         {
             Process.Start("explorer", dataManager.path);
+        }
+
+        private void reloadCasesButton_Click(object sender, EventArgs e)
+        {
+            caseFilesPanel.Controls.Clear();
+            CaseLoader();
+        }
+
+        private void caseFilesPanel_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

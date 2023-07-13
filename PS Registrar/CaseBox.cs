@@ -12,6 +12,8 @@ namespace PS_Registrar
 {
     public partial class CaseBox : Form
     {
+        public DataManager dataManager = null;
+        public Dashboard dashboard = null;
         public CaseBox()
         {
             InitializeComponent();
@@ -22,7 +24,7 @@ namespace PS_Registrar
             DialogResult dialogResult = MessageBox.Show("Are you sure you want to delete the case ?", "Delete Case - PS Registrar", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
-                //Delete Logic
+                dataManager.DeleteCase(uniqueIDLabel.Text);
             }
         }
         public void SetDetails(string caseName,string DOR,string uniqueID)

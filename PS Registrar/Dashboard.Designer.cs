@@ -33,6 +33,7 @@
             this.testButton = new System.Windows.Forms.Button();
             this.newCaseButton = new System.Windows.Forms.Button();
             this.openDataFolderButton = new System.Windows.Forms.Button();
+            this.reloadCasesButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // backButton
@@ -52,6 +53,7 @@
             this.caseFilesPanel.Name = "caseFilesPanel";
             this.caseFilesPanel.Size = new System.Drawing.Size(897, 591);
             this.caseFilesPanel.TabIndex = 2;
+            this.caseFilesPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.caseFilesPanel_Paint);
             // 
             // testButton
             // 
@@ -83,11 +85,22 @@
             this.openDataFolderButton.UseVisualStyleBackColor = true;
             this.openDataFolderButton.Click += new System.EventHandler(this.openDataFolderButton_Click);
             // 
+            // reloadCasesButton
+            // 
+            this.reloadCasesButton.Location = new System.Drawing.Point(418, 9);
+            this.reloadCasesButton.Name = "reloadCasesButton";
+            this.reloadCasesButton.Size = new System.Drawing.Size(123, 23);
+            this.reloadCasesButton.TabIndex = 6;
+            this.reloadCasesButton.Text = "Reload Cases";
+            this.reloadCasesButton.UseVisualStyleBackColor = true;
+            this.reloadCasesButton.Click += new System.EventHandler(this.reloadCasesButton_Click);
+            // 
             // Dashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(924, 702);
+            this.Controls.Add(this.reloadCasesButton);
             this.Controls.Add(this.openDataFolderButton);
             this.Controls.Add(this.newCaseButton);
             this.Controls.Add(this.testButton);
@@ -106,6 +119,7 @@
         private System.Windows.Forms.Button testButton;
         private System.Windows.Forms.Button newCaseButton;
         private System.Windows.Forms.Button openDataFolderButton;
+        private System.Windows.Forms.Button reloadCasesButton;
     }
 }
 
