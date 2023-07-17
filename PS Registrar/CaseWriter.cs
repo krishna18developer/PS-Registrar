@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PS_Registrar.Properties;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -8,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace PS_Registrar
 {
@@ -18,7 +20,8 @@ namespace PS_Registrar
         bool isCaseSaved = false;
         public string uniqueCaseID = "";
         public bool isNewCase = true;
-        string caseName = "", slNo = "", FIRNo = "", DOR = "", complaintantDetails = "", accusedDetails = "", modeOfCrime = "", propertyLost = "", remarks = "", accusedPictureLoc = "";
+        string caseType = "", slNo = "", FIRNo = "", DOR = "", complaintantDetails = "", accusedDetails = "", modeOfCrime = "", propertyLost = "", remarks = "", accusedPictureLoc = "";
+        float defaultFontSize = Settings.Default.FontSizeCaseWriter;
         public CaseWriter()
         {
             InitializeComponent();
@@ -42,11 +45,49 @@ namespace PS_Registrar
             }
         }
 
+        void setFontSize(float size)
+        {
+            caseTypeBox.Font = new Font("Microsoft Sans Serif", size);
+            slNoBox.Font = new Font("Microsoft Sans Serif", size);
+            FIRBox.Font = new Font("Microsoft Sans Serif", size);
+            DORBox.Font = new Font("Microsoft Sans Serif", size);
+            CPDetailsBox.Font = new Font("Microsoft Sans Serif", size);
+            accusedDetailsBox.Font = new Font("Microsoft Sans Serif", size);
+            modeOfCrimeBox.Font = new Font("Microsoft Sans Serif", size);
+            propertyLostBox.Font = new Font("Microsoft Sans Serif", size);
+            remarksBox.Font = new Font("Microsoft Sans Serif", size);
+        }
+        private void increaseFontContextButton_Click(object sender, EventArgs e)
+        {
+            defaultFontSize += 2;
+            Settings.Default.FontSizeCaseWriter = defaultFontSize;
+            Settings.Default.Save();
+            setFontSize(defaultFontSize);
+        }
+
+        private void decreaseFontContextButton_Click(object sender, EventArgs e)
+        {
+            defaultFontSize -= 2;
+            Settings.Default.FontSizeCaseWriter = defaultFontSize;
+            Settings.Default.Save();
+            setFontSize(defaultFontSize);
+        }
+
         private void saveCaseButton_Click(object sender, EventArgs e)
         {
-            if(dataManager!=null)
-            {              
-                isCaseSaved = dataManager.SaveData(uniqueCaseID, caseNameBox.Text, slNoBox.Text,FIRBox.Text, DORBox.Text, CPDetailsBox.Text, accusedDetailsBox.Text, modeOfCrimeBox.Text,propertyLostBox.Text,remarksBox.Text, dataManager.path + "Pictures\\" + uniqueCaseID + " " + openFileDialog1.SafeFileName);
+            saveCase();
+        }
+
+        private void saveCaseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            saveCase();
+        }
+
+        private void saveCase()
+        {
+            if (dataManager != null)
+            {
+                isCaseSaved = dataManager.SaveData(uniqueCaseID, caseTypeBox.Text, slNoBox.Text, FIRBox.Text, DORBox.Text, CPDetailsBox.Text, accusedDetailsBox.Text, modeOfCrimeBox.Text, propertyLostBox.Text, remarksBox.Text, dataManager.path + "Pictures\\" + uniqueCaseID + " " + openFileDialog1.SafeFileName);
             }
             else
             {
@@ -80,7 +121,7 @@ namespace PS_Registrar
                 DORBox.Text = DOR;
             }
             caseIDLabel.Text = "Case ID: " + uniqueCaseID;
-            
+            setFontSize(defaultFontSize);
         }
 
         private void CPDetailsBox_TextChanged(object sender, EventArgs e)
@@ -100,7 +141,7 @@ namespace PS_Registrar
                 string caseFiles = File.ReadAllText(dataManager.getCaseFileWithID(ID));
                 caseIDLabel.Text = "Case ID: " + uniqueCaseID;
                 uniqueCaseID = ID;
-                caseName = Between(caseFiles.ToString(), "caseName:", ":caseName");
+                caseType = Between(caseFiles.ToString(), "caseType:", ":caseType");
                 slNo = Between(caseFiles.ToString(), "slNo:", ":slNo");
                 FIRNo = Between(caseFiles.ToString(), "FIRNo:", ":FIRNo");
                 DOR = Between(caseFiles.ToString(), "DOR:", ":DOR");
@@ -115,7 +156,7 @@ namespace PS_Registrar
             {
                 MessageBox.Show("File Busy - Case Writer");
             }
-            caseNameBox.Text = caseName;
+            caseTypeBox.Text = caseType;
             slNoBox.Text = slNo;
             FIRBox.Text = FIRNo;
             DORBox.Text = DOR;

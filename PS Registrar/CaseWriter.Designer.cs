@@ -28,9 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CaseWriter));
             this.caseNameLabel = new System.Windows.Forms.Label();
-            this.caseNameBox = new System.Windows.Forms.TextBox();
+            this.caseTypeBox = new System.Windows.Forms.TextBox();
             this.backButton = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.slNoBox = new System.Windows.Forms.TextBox();
@@ -54,7 +55,12 @@
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.accusedPictureBox = new System.Windows.Forms.PictureBox();
+            this.caseWriterContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.increaseFontContextButton = new System.Windows.Forms.ToolStripMenuItem();
+            this.decreaseFontContextButton = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveCaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.accusedPictureBox)).BeginInit();
+            this.caseWriterContextMenu.SuspendLayout();
             this.SuspendLayout();
             // 
             // caseNameLabel
@@ -63,16 +69,16 @@
             this.caseNameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.caseNameLabel.Location = new System.Drawing.Point(12, 42);
             this.caseNameLabel.Name = "caseNameLabel";
-            this.caseNameLabel.Size = new System.Drawing.Size(96, 20);
+            this.caseNameLabel.Size = new System.Drawing.Size(88, 20);
             this.caseNameLabel.TabIndex = 4;
-            this.caseNameLabel.Text = "Case Name:";
+            this.caseNameLabel.Text = "Case Type:";
             // 
-            // caseNameBox
+            // caseTypeBox
             // 
-            this.caseNameBox.Location = new System.Drawing.Point(177, 42);
-            this.caseNameBox.Name = "caseNameBox";
-            this.caseNameBox.Size = new System.Drawing.Size(559, 20);
-            this.caseNameBox.TabIndex = 3;
+            this.caseTypeBox.Location = new System.Drawing.Point(177, 42);
+            this.caseTypeBox.Name = "caseTypeBox";
+            this.caseTypeBox.Size = new System.Drawing.Size(559, 20);
+            this.caseTypeBox.TabIndex = 3;
             // 
             // backButton
             // 
@@ -280,11 +286,42 @@
             this.accusedPictureBox.TabStop = false;
             this.accusedPictureBox.DoubleClick += new System.EventHandler(this.accusedPictureBox_DoubleClick);
             // 
+            // caseWriterContextMenu
+            // 
+            this.caseWriterContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.increaseFontContextButton,
+            this.decreaseFontContextButton,
+            this.saveCaseToolStripMenuItem});
+            this.caseWriterContextMenu.Name = "caseWriterContextMenu";
+            this.caseWriterContextMenu.Size = new System.Drawing.Size(149, 70);
+            // 
+            // increaseFontContextButton
+            // 
+            this.increaseFontContextButton.Name = "increaseFontContextButton";
+            this.increaseFontContextButton.Size = new System.Drawing.Size(148, 22);
+            this.increaseFontContextButton.Text = "Increase Font";
+            this.increaseFontContextButton.Click += new System.EventHandler(this.increaseFontContextButton_Click);
+            // 
+            // decreaseFontContextButton
+            // 
+            this.decreaseFontContextButton.Name = "decreaseFontContextButton";
+            this.decreaseFontContextButton.Size = new System.Drawing.Size(148, 22);
+            this.decreaseFontContextButton.Text = "Decrease Font";
+            this.decreaseFontContextButton.Click += new System.EventHandler(this.decreaseFontContextButton_Click);
+            // 
+            // saveCaseToolStripMenuItem
+            // 
+            this.saveCaseToolStripMenuItem.Name = "saveCaseToolStripMenuItem";
+            this.saveCaseToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.saveCaseToolStripMenuItem.Text = "Save Case";
+            this.saveCaseToolStripMenuItem.Click += new System.EventHandler(this.saveCaseToolStripMenuItem_Click);
+            // 
             // CaseWriter
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1337, 815);
+            this.ContextMenuStrip = this.caseWriterContextMenu;
             this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.caseIDLabel);
             this.Controls.Add(this.saveCaseButton);
@@ -308,12 +345,13 @@
             this.Controls.Add(this.slNoBox);
             this.Controls.Add(this.backButton);
             this.Controls.Add(this.caseNameLabel);
-            this.Controls.Add(this.caseNameBox);
+            this.Controls.Add(this.caseTypeBox);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "CaseWriter";
             this.Text = "CaseWriter";
             this.Load += new System.EventHandler(this.CaseWriter_Load);
             ((System.ComponentModel.ISupportInitialize)(this.accusedPictureBox)).EndInit();
+            this.caseWriterContextMenu.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -322,7 +360,7 @@
         #endregion
 
         private System.Windows.Forms.Label caseNameLabel;
-        private System.Windows.Forms.TextBox caseNameBox;
+        private System.Windows.Forms.TextBox caseTypeBox;
         private System.Windows.Forms.Button backButton;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox slNoBox;
@@ -346,5 +384,9 @@
         private System.Windows.Forms.Label caseIDLabel;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.ContextMenuStrip caseWriterContextMenu;
+        private System.Windows.Forms.ToolStripMenuItem increaseFontContextButton;
+        private System.Windows.Forms.ToolStripMenuItem decreaseFontContextButton;
+        private System.Windows.Forms.ToolStripMenuItem saveCaseToolStripMenuItem;
     }
 }

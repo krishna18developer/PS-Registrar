@@ -6,6 +6,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Security.AccessControl;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -58,8 +59,9 @@ namespace PS_Registrar
                     //MessageBox.Show(fileName);
                     string ID = fileName.Replace("PSC-", "");
                     //MessageBox.Show("Pre - " +ID);
-                    string caseName = "ABCD";
+                    string caseType = "ABCD";
                     string DOR = "23-05-2036";
+                    string FIRNo = "####";
                     ID = ID.Substring(ID.Length - 10, 6);
                     //MessageBox.Show("ID - " + ID);
                     //MessageBox.Show(ID);
@@ -68,9 +70,10 @@ namespace PS_Registrar
                     StreamReader stream = new StreamReader(fileName);
                     string caseFiles = stream.ReadToEnd();
                     // string caseFiles = File.ReadAllText(fileName);
-                    caseName = Between(caseFiles.ToString(), "caseName:", ":caseName");
+                    caseType = Between(caseFiles.ToString(), "caseType:", ":caseType");
+                    FIRNo = Between(caseFiles.ToString(), "FIRNo:", ":FIRNo");
                     DOR = Between(caseFiles.ToString(), "DOR:", ":DOR");
-                    LoadCaseFiles(caseName, DOR, ID);
+                    LoadCaseFiles(caseType, DOR, ID, FIRNo);
                     stream.Close();
                 }
             }
@@ -92,12 +95,12 @@ namespace PS_Registrar
             }
             return FinalString;
         }
-        private void LoadCaseFiles(string caseName,string DOR,string ID)
+        private void LoadCaseFiles(string caseName,string DOR,string ID,string FIRNo)
         {
             CaseBox caseBox = new CaseBox();
             caseBox.TopLevel = false;
             caseBox.AutoScroll = true;
-            caseBox.SetDetails(caseName,DOR,ID);
+            caseBox.SetDetails(caseName,DOR,ID, FIRNo);
             caseFilesPanel.Controls.Add(caseBox);
             caseBox.dataManager = dataManager;
             caseBox.dashboard = this;
@@ -130,7 +133,7 @@ namespace PS_Registrar
             caseWriter.isNewCase = false;
             caseWriter.LoadData(ID);
             caseWriter.Show();
-            this.Hide();
+            this.Hide();           
         }
 
         private void openDataFolderButton_Click(object sender, EventArgs e)
@@ -148,5 +151,38 @@ namespace PS_Registrar
         {
 
         }
+
+        private void openCaseWithFIRButton_Click(object sender, EventArgs e)
+        {
+            bool check = true;
+            try
+            {
+                for (int i = 0; i < dataManager.NumberOfCases; i++)
+                {
+                    string fileName = dataManager.caseFiles.ElementAt(i);
+                    string ID = fileName.Replace("PSC-", "");
+                    string FIRNo = "####";
+                    ID = ID.Substring(ID.Length - 10, 6);
+                    StreamReader stream = new StreamReader(fileName);
+                    string caseFiles = stream.ReadToEnd();
+                    FIRNo = Between(caseFiles.ToString(), "FIRNo:", ":FIRNo");
+                    if(FIRSearchBox.Text==FIRNo)
+                    {
+                        openExistingCase(ID);
+                        check = false;
+                    }
+                    stream.Close();
+                }
+                if(check)
+                {
+                    MessageBox.Show("Case with FIR: " + FIRSearchBox.Text + " is Not Found!");
+                }
+            }
+            catch (Exception ek)
+            {
+                MessageBox.Show("Dashboard - File Busy");
+                Console.WriteLine(ek);
+            }
+        }
     }
-}
+    }

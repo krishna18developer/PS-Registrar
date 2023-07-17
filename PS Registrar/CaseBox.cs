@@ -27,17 +27,23 @@ namespace PS_Registrar
                 dataManager.DeleteCase(uniqueIDLabel.Text);
             }
         }
-        public void SetDetails(string caseName,string DOR,string uniqueID)
+        public void SetDetails(string caseName,string DOR,string uniqueID,string FIRNo)
         {
             caseNameLabel.Text = caseName;
             caseDateReported.Text = DOR;
             uniqueIDLabel.Text = uniqueID;
+            FIRNoLabel.Text = FIRNo;
         }
 
         private void openCaseButton_Click(object sender, EventArgs e)
         {
             if(uniqueIDLabel.Text !="" && dashboard !=null)
             dashboard.openExistingCase(uniqueIDLabel.Text);
+        }
+
+        private void CaseBox_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

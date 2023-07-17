@@ -34,6 +34,7 @@
             this.openCaseButton = new System.Windows.Forms.Button();
             this.deleteCaseButton = new System.Windows.Forms.Button();
             this.uniqueIDLabel = new System.Windows.Forms.Label();
+            this.FIRNoLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // caseNameLabel
@@ -89,12 +90,23 @@
             this.uniqueIDLabel.TabIndex = 5;
             this.uniqueIDLabel.Text = "UNQ ID";
             // 
+            // FIRNoLabel
+            // 
+            this.FIRNoLabel.AutoSize = true;
+            this.FIRNoLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FIRNoLabel.Location = new System.Drawing.Point(14, 51);
+            this.FIRNoLabel.Name = "FIRNoLabel";
+            this.FIRNoLabel.Size = new System.Drawing.Size(57, 25);
+            this.FIRNoLabel.TabIndex = 6;
+            this.FIRNoLabel.Text = "FIR: ";
+            // 
             // CaseBox
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.WindowFrame;
+            this.BackColor = System.Drawing.SystemColors.InactiveCaption;
             this.ClientSize = new System.Drawing.Size(430, 166);
+            this.Controls.Add(this.FIRNoLabel);
             this.Controls.Add(this.uniqueIDLabel);
             this.Controls.Add(this.deleteCaseButton);
             this.Controls.Add(this.openCaseButton);
@@ -104,6 +116,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "CaseBox";
             this.Text = "CaseBox";
+            this.Load += new System.EventHandler(this.CaseBox_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -116,5 +129,6 @@
         private System.Windows.Forms.Button openCaseButton;
         private System.Windows.Forms.Button deleteCaseButton;
         private System.Windows.Forms.Label uniqueIDLabel;
+        private System.Windows.Forms.Label FIRNoLabel;
     }
 }

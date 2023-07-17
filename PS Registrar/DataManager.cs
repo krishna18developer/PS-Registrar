@@ -41,7 +41,7 @@ namespace PS_Registrar
             }
             NumberOfCases = caseFiles.Count;
         }
-        public bool SaveData(string uniqueCaseID, string caseName,string slNo,string FIRNo,string DOR,string complaintantDetails,string accusedDetails,string modeOfCrime,string propertyLost,string remarks,string accusedPictureLoc)
+        public bool SaveData(string uniqueCaseID, string caseType, string slNo,string FIRNo,string DOR,string complaintantDetails,string accusedDetails,string modeOfCrime,string propertyLost,string remarks,string accusedPictureLoc)
         {
             bool isSaveSuccessful = true;
             string filePath = path + caseFilesPrefix + uniqueCaseID + ".bin";
@@ -53,7 +53,7 @@ namespace PS_Registrar
                 fs.Close();
                 TextWriter tw = new StreamWriter(filePath, true);
                 tw.WriteLine(String.Empty);
-                tw.WriteLine("caseName:" + caseName + ":caseName");
+                tw.WriteLine("caseType:" + caseType + ":caseType");
                 tw.WriteLine("slNo:" + slNo + ":slNo");
                 tw.WriteLine("FIRNo:" + FIRNo + ":FIRNo");
                 tw.WriteLine("DOR:" + DOR + ":DOR");
